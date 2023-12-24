@@ -1,10 +1,9 @@
 public class MonitoringResult {
-    private int resultID;
-    private int monitoringID;
-    private int indicatorID;
-    private double resultValue;
-    // 获取 MonitoringID
-    // 获取 ResultID
+    public int resultID;
+    public int monitoringID;
+    public int indicatorID;
+    public double resultValue;
+
 
     public int getResultID() {
         return resultID;
@@ -45,7 +44,14 @@ public class MonitoringResult {
         this.resultValue = resultValue;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "MonitoringResult{" +
+                "resultID=" + resultID +
+                ", monitoringID=" + monitoringID +
+                ", indicatorID=" + indicatorID +
+                ", resultValue=" + resultValue +
+                '}';
+    }
     // 省略构造方法和其他方法，可根据需要添加
 }

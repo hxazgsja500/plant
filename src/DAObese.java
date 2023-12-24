@@ -4,11 +4,11 @@ import java.sql.DriverManager;
 public class DAObese implements DAO {
 
     public Connection getConnection() {
-        String URL="jdbc:sqlserver://localhost:18546;databaseName=plant;encrypt=false";
+        String URL="jdbc:sqlserver://localhost:1433;databaseName=plant;encrypt=false";
         Connection con = null;
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection(URL,"msy","123456");
+            con = DriverManager.getConnection(URL,"han","123456");
 
         }catch (Exception ex){
             ex.printStackTrace();

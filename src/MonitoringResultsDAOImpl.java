@@ -2,16 +2,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MonitoringResultsDAOImpl implements MonitoringResultsDAO {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:18546/plant";
-    private static final String JDBC_USER = "msy";
+    private static final String JDBC_URL = "jdbc:sqlserver://localhost:1433;databaseName=plant;encrypt=false";
+    private static final String JDBC_USER = "han";
     private static final String JDBC_PASSWORD = "123456";
 
-    private Connection connection;
+    public Connection connection;
 
     public MonitoringResultsDAOImpl() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -89,5 +90,6 @@ public class MonitoringResultsDAOImpl implements MonitoringResultsDAO {
             e.printStackTrace();
         }
     }
+
 }
 

@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class Main {
 
-
     public static void main(String[] args) {
         while (true) {
             System.out.println(
@@ -28,15 +27,6 @@ public class Main {
 
                 if (p2 == 1) {
                     System.out.println("您当前用户的身份为系统管理员");
-
-                } else if (p2 == 2) {
-                    System.out.println("您当前用户的身份为养护人员");
-
-                } else if (p2 == 3) {
-                    System.out.println("您当前用户的身份为检测人员");
-
-                } else {
-                    System.out.println("您当前用户的身份为上层管理");
                     Scanner scanner = new Scanner(System.in);
                     //选择要操作的表
                     while (true) {
@@ -58,9 +48,11 @@ public class Main {
 
                         switch (choice) {
                             case 1:
+                                //监测表改动
                                 operateTable(new MonitoringResultsDAOImpl());
                                 break;
                             case 2:
+                                //病虫害表改动
 
                                 break;
                             case 3:
@@ -72,20 +64,111 @@ public class Main {
                             case 5:
 
                                 break;
-
                             default:
                                 System.out.println("无效的选项，请重新输入！");
                         }
                     }
+                } else if (p2 == 2) {
+                    System.out.println("您当前用户的身份为养护人员");
 
+                } else if (p2 == 3) {
+                    System.out.println("您当前用户的身份为检测人员");
+                    //监测表改动
+                    operateTable(new MonitoringResultsDAOImpl());
+                } else {
+                    System.out.println("您当前用户的身份为上层管理");
+                    Scanner scanner = new Scanner(System.in);
+
+                    while (true) {
+                        // 打印菜单选项
+                        System.out.println("===== 主菜单 =====");
+                        System.out.println("1. 查看养护人员信息");
+                        System.out.println("2. 查看监测人员信息");
+                        System.out.println("3. 查看养护结果");
+                        System.out.println("4. 查看园林植物养护信息");
+                        System.out.println("5. 查看植物分类信息");
+                        System.out.println("6. 查看植物基本信息");
+                        System.out.println("0. 退出程序");
+                        System.out.print("请输入选项编号: ");
+                        // 读取用户输入
+                        int choice = scanner.nextInt();
+                        // 根据用户选择执行相应操作
+                        switch (choice) {
+                            case 1:
+                                // 执行查看养护人员信息的操作
+                                System.out.println("查看养护人员信息...");
+                                MaintenanceDAO maintenanceDAO = new MaintenanceDAOImpl();
+                                // 查询所有养护任务
+                                List<Maintenance> maintenanceList = maintenanceDAO.getAllMaintenance();
+                                for (Maintenance maintenance : maintenanceList) {
+                                    System.out.println(maintenance);
+                                }
+                                break;
+                            case 2:
+                                // 执行查看监测人员信息的操作
+                                System.out.println("查看监测人员信息...");
+                                MonitoringDAO monitoringDAO = new MonitoringDAOImpl();
+                                // 查询所有检测信息
+                                List<Monitoring> monitoringList = monitoringDAO.getAllMonitoring();
+                                for (Monitoring monitoring : monitoringList) {
+                                    System.out.println(monitoring);
+                                }
+                                break;
+                            case 3:
+                                // 执行查看养护结果的操作
+                                System.out.println("查看养护结果...");
+                                MonitoringResultsDAO monitoringResultsDAO = new MonitoringResultsDAOImpl();
+                                // 查询所有检测信息
+                                List<MonitoringResult> monitoringResultsList = monitoringResultsDAO.getAllResults();
+                                for (MonitoringResult MonitoringResult : monitoringResultsList) {
+                                    System.out.println(MonitoringResult);
+                                }
+                                break;
+                            case 4:
+                                // 执行查看园林植物养护信息的操作
+                                System.out.println("查看园林植物养护信息...");
+                                PlantCareDAO plantCareDAO = new PlantCareDAOImpl();
+                                // 查询所有园林植物养护信息
+                                List<PlantCare> plantCareList = plantCareDAO.getAllPlantCare();
+                                for (PlantCare plantCare : plantCareList) {
+                                    System.out.println(plantCare);
+                                }
+                                break;
+                            case 5:
+                                // 执行查看植物分类信息的操作
+                                System.out.println("查看植物分类信息...");
+                                ClassificationDAO classificationDAO = new ClassificationDAOImpl();
+                                List<Classification> classifications = classificationDAO.getAllClassifications();
+                                for (Classification classification : classifications) {
+                                    System.out.println(classification);
+                                }
+                                break;
+                            case 6:
+                                // 执行查看植物基本信息的操作
+                                System.out.println("查看植物基本信息...");
+                                PlantDAO plantDAO = new PlantDAOImpl();
+                                List<Plant> plantList = plantDAO.getAllPlants();
+                                for (Plant Plant : plantList) {
+                                    System.out.println(Plant);
+                                }
+                                break;
+                            case 0:
+                                // 退出程序
+                                System.out.println("退出程序。");
+                                System.exit(0);
+                                break;
+                            default:
+                                // 处理无效选项
+                                System.out.println("无效的选项，请重新输入。");
+                        }
+                    }
                 }
             } else {
                 System.out.println("密码错误 ");
             }
-
         }
     }
-
+    //检测结果表用法的目录及函数operateTable
     private static void operateTable(MonitoringResultsDAOImpl monitoringResultsDAO) {
         //对检测表的操作，对监测ID MonitoringID，监测指标ID IndicatorID，结果数值类型 ResultValue 的操作
         Scanner scanner = new Scanner(System.in);
@@ -147,3 +230,5 @@ public class Main {
         }
     }
 }
+
+

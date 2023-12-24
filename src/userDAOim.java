@@ -83,7 +83,7 @@ public class userDAOim extends DAObese implements userDAO {
 
             List<user> userList = new ArrayList<>();
             while (rs.next()){
-                String username = rs.getString("username");
+                String username = rs.getString("Username");
                 int usertype = rs.getInt("usertype");
 
                 user user = new user();

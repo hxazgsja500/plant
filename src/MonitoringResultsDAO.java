@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface MonitoringResultsDAO {
+public interface  MonitoringResultsDAO{
     List<MonitoringResult> getAllResults();
     void insertResult(MonitoringResult result);
     void updateResult(MonitoringResult result);
